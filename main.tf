@@ -3,8 +3,8 @@ provider "kubernetes" {
   host                   = var.kubernetes_cluster_endpoint
   exec {
     api_version = "client.authentication.k8s.io/v1"
-    command     = "aws-iam-authenticator"
-    args        = ["token", "-i", var.kubernetes_cluster_name]
+    command     = "aws"
+    args        = ["eks", "get-token", "--cluster-name", var.kubernetes_cluster_name]
   }
 }
 
@@ -15,8 +15,8 @@ provider "helm" {
     # Added '=' here because it is inside an object map
     exec = {
       api_version = "client.authentication.k8s.io/v1"
-      command     = "aws-iam-authenticator"
-      args        = ["token", "-i", var.kubernetes_cluster_name]
+      command     = "aws"
+      args        = ["eks", "get-token", "--cluster-name", var.kubernetes_cluster_name]
     }
   }
 }
