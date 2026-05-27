@@ -1,5 +1,5 @@
 variable "aws_region" {
-  description = "AWS region ID for deployment (e.g. eu-west-1)"
+  description = "AWS region ID for deployment (e.g. eu-central-1)"
   type        = string
   default     = "eu-central-1"
 }
@@ -21,6 +21,6 @@ variable "kubernetes_cluster_name" {
 }
 
 variable "eks_nodegroup_id" {
-  type = string
+  type        = any
+  description = "Passed to enforce dependency order before deploying cluster workloads"
 }
-
